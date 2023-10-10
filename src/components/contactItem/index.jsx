@@ -1,10 +1,16 @@
+import { useDispatch } from 'react-redux';
 import { ContactTypography, DeleteButton } from './ContactItem.styled';
+import { deleteContact } from 'store/contacts/actions';
 
-const ContactItem = ({ name, id, number, handleDelete }) => {
+const ContactItem = ({ name, id, number }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => dispatch(deleteContact(id));
+
   return (
     <ContactTypography>
       {name}: {number}
-      <DeleteButton onClick={() => handleDelete(id)} type="button">
+      <DeleteButton onClick={handleDelete} type="button">
         Delete
       </DeleteButton>
     </ContactTypography>

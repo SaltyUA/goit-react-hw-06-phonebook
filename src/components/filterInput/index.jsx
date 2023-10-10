@@ -1,8 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { FilterContainer, TextTypography } from './FilterContainer.styled';
 import { Input } from 'components/form/Form.styled';
+import { getFilter } from 'store/selectors';
+import { setFilter } from 'store/filter/actions';
 
 // Input in ContactList for filtering contacts
-const FilterInput = ({ filterValue, handleFilter }) => {
+const FilterInput = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+  const handleFilter = ({ target: { value } }) => dispatch(setFilter(value));
+
   return (
     <FilterContainer>
       <TextTypography>Find contacts by name</TextTypography>
@@ -10,7 +17,7 @@ const FilterInput = ({ filterValue, handleFilter }) => {
         onChange={handleFilter}
         type="text"
         name="filter"
-        value={filterValue}
+        value={filter}
         pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       />

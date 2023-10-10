@@ -6,10 +6,16 @@ import {
   Input,
   SubmitButton,
 } from './Form.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'store/selectors';
+import { addContact } from 'store/contacts/actions';
 
-const Form = ({ onSubmit, contacts }) => {
+const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -27,7 +33,7 @@ const Form = ({ onSubmit, contacts }) => {
       window.alert(`${name} is already in contacts`);
       return;
     }
-    onSubmit({ name, number });
+    dispatch(addContact({ name, number }));
     reset();
   };
 
