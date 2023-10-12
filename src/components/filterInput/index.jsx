@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FilterContainer, TextTypography } from './FilterContainer.styled';
 import { Input } from 'components/form/Form.styled';
 import { getFilter } from 'store/selectors';
-import { setFilter } from 'store/filter/actions';
+import { setFilter } from 'store/filter/slice';
 
 // Input in ContactList for filtering contacts
 const FilterInput = () => {

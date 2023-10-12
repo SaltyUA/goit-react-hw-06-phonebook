@@ -21,6 +21,7 @@ const App = () => {
   // }, [contacts]);
 
   const getFilteredContacts = () =>
+    contacts &&
     contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -30,8 +31,12 @@ const App = () => {
       <h1>Phonebook</h1>
       <Form />
       <h2>Contacts</h2>
-      {contacts.length > 0 ? <FilterInput /> : <p>There are no contacts yet</p>}
-      {getFilteredContacts().length > 0 && (
+      {contacts && contacts.length > 0 ? (
+        <FilterInput />
+      ) : (
+        <p>There are no contacts yet</p>
+      )}
+      {contacts && getFilteredContacts().length > 0 && (
         <ContactList contacts={getFilteredContacts()} />
       )}
     </div>

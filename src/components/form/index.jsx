@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   FormContainer,
   FormWrap,
@@ -8,7 +8,7 @@ import {
 } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'store/selectors';
-import { addContact } from 'store/contacts/actions';
+import { addContact } from 'store/contacts/slice';
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -26,9 +26,11 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    let isExist = contacts.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
+    let isExist = contacts
+      ? contacts.some(
+          contact => contact.name.toLowerCase() === name.toLowerCase()
+        )
+      : false;
     if (isExist) {
       window.alert(`${name} is already in contacts`);
       return;
