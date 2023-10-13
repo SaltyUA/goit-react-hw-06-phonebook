@@ -26,11 +26,9 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    let isExist = contacts
-      ? contacts.some(
-          contact => contact.name.toLowerCase() === name.toLowerCase()
-        )
-      : false;
+    let isExist = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
     if (isExist) {
       window.alert(`${name} is already in contacts`);
       return;

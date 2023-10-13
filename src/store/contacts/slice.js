@@ -9,11 +9,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       prepare: createContactObject,
-      reducer: (state, { payload }) => {
-        state.contacts
-          ? state.contacts.push(payload)
-          : (state.contacts = [payload]);
-      },
+      reducer: (state, { payload }) => state.contacts.push(payload),
     },
     deleteContact: (state, { payload }) => {
       state.contacts = state.contacts.filter(el => el.id !== payload);
